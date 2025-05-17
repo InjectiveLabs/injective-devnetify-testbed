@@ -1,0 +1,4 @@
+injective-888/config/addrbook.json filter=lfs diff=lfs merge=lfs -text
+injective-888/config/genesis.json filter=lfs diff=lfs merge=lfs -text
+injective-888/config/node_key.json filter=lfs diff=lfs merge=lfs -text
+injective-888/config/priv_validator_key.json filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,6 @@
+data/
+wasm/
+keyring-file/
+write-file-atomic*
+*.tar.lz4
+*.tar.gz
