@@ -15,18 +15,21 @@ fetch_proposal_id() {
 }
 
 post_proposal() {
-    $ECHO_ONLY ./injectived-cli-v1.15.sh tx upgrade software-upgrade v1.16.0 \
+    $ECHO_ONLY $(dirname $0)/injectived-cli-v1.15.0.sh tx upgrade software-upgrade v1.16.0 \
     --title "UPGRADE_v1.16.0_TEST" \
     --upgrade-height $HALT_HEIGHT \
     --summary "UPGRADE_v1.16.0_TEST" \
     --deposit 500000000000000000000inj $TX_OPTS \
+    --node "tcp://host.docker.internal:26657" \
     --no-validate
 }
 
 vote() {
     PROPOSAL_ID=$1
     echo $PROPOSAL_ID
-    $ECHO_ONLY ./injectived-cli-v1.15.sh tx gov vote $PROPOSAL_ID yes $TX_OPTS
+    $ECHO_ONLY $(dirname $0)/injectived-cli-v1.15.0.sh tx \
+        --node "tcp://host.docker.internal:26657" \
+        gov vote $PROPOSAL_ID yes $TX_OPTS
 }
 
 echo "Posting proposal"

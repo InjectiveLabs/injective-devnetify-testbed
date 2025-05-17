@@ -3,5 +3,5 @@
 ulimit -n 120000
 
 injectived \
---home "./injective-888" \
-$*
+--home "./injective-1" \
+${*:-"query"}

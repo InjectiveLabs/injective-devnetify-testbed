@@ -9,20 +9,25 @@ This repo is a demo case for the devnetify process.
 1. Download the latest [testnet state snapshot](https://polkachu.com/testnets/injective/snapshots) from Polkachu
     - `data` -> `injective-888/data`
     - `wasm` -> `injective-888/wasm`
-2. Run `devnetify-testnet-v1.15.sh`, wait for it to finish.
-3. Run `injectived-v1.15.sh` in separate tab.
-4. Run `apply-upgrade-testnet-v1.16.sh` (voting time is `10s` as per `custom_overrides.yaml`)
-5. Verify it's done and wait until block is reached.
+2. Run `./injective-888/cli/devnetify-v1.15.sh`, wait for it to finish.
+3. Run `./injective-888/cli/injectived-v1.15.sh` in separate tab.
+4. Run `./injective-888/cli/apply-upgrade-v1.16.sh` (voting time is `10s` as per `custom_overrides.yaml`)
+5. Verify it's done and wait until block is reached, stop the node.
+6. Ensure that a local `injectived` binary has `v1.16.0` upgrade handler.
+7. Run local `injectived` with `./injective-888/cli/injectived-local.sh` and validate the upgrade.
 
 ### Steps to re-build the mainnet from scratch
 
 1. Download the latest [mainnet state snapshot](https://polkachu.com/tendermint_snapshots/injective) from Polkachu
     - `data` -> `injective-1/data`
     - `wasm` -> `injective-1/wasm`
-2. Run `devnetify-mainnet-v1.15.sh`, wait for it to finish.
-3. Run `injectived-v1.15.sh` in separate tab.
-4. Run `apply-upgrade-mainnet-v1.16.sh` (voting time is `10s` as per `custom_overrides.yaml`)
-5. Verify it's done and wait until block is reached.
+2. Run `./injective-1/cli/devnetify-v1.15.sh`, wait for it to finish.
+3. Run `./injective-1/cli/injectived-v1.15.sh` in separate tab.
+4. Run `./injective-1/cli/apply-upgrade-v1.16.sh` (voting time is `10s` as per `custom_overrides.yaml`)
+5. Verify it's done and wait until block is reached, stop the node.
+6. Ensure that a local `injectived` binary has `v1.16.0` upgrade handler.
+7. Run local `injectived` with `./injective-1/cli/injectived-local.sh` and validate the upgrade.
+
 
 ### Useful endpoints
 
@@ -42,3 +47,29 @@ Validators set
 ```
 http://localhost:10337/cosmos/staking/v1beta1/validators
 ```
+
+### Makefile
+
+There is a handy Makefile to automate the process.
+
+Default environment values:
+```bash
+CHAIN_ID=888 # set the chain id
+VERSION_FROM=v1.15.0 # set the version from
+VERSION_TO=v1.16.0 # set the version to
+```
+
+Targets:
+```bash
+make devnetify # devnetify the state
+make apply-upgrade # apply upgrade
+make injectived # run injectived node with docker image
+make injectived-local # run injectived node with local binary
+make injectived-cli # run injectived client with docker image
+make injectived-cli-local # run injectived client with local binary
+make clean # clean up the data and wasm directories
+make unpack # unpack the snapshot from the tar.lz4 file
+```
+
+There is also a `unpack` target to unpack the snapshot from any `*.tar.lz4` file. Just download the snapshot from Polkachu to the target chain dir and run `make unpack`. Use `CHAIN_ID` to set the valid chain dir prefix, e.g. `CHAIN_ID=1 make unpack`.
+

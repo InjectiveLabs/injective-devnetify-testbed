@@ -1,0 +1,32 @@
+all:
+
+CHAIN_ID?=888
+VERSION_FROM?=v1.15.0
+VERSION_TO?=v1.16.0
+
+devnetify:
+	./injective-$(CHAIN_ID)/cli/devnetify-$(VERSION_FROM).sh
+
+apply-upgrade:
+	./injective-$(CHAIN_ID)/cli/apply-upgrade-$(VERSION_TO).sh
+
+injectived:
+	./injective-$(CHAIN_ID)/cli/injectived-$(VERSION_FROM).sh
+
+injectived-local:
+	./injective-$(CHAIN_ID)/cli/injectived-local.sh
+
+injectived-cli:
+	./injective-$(CHAIN_ID)/cli/injectived-cli-$(VERSION_FROM).sh
+
+injectived-cli-local:
+	./injective-$(CHAIN_ID)/cli/injectived-cli-local.sh
+
+clean:
+	@rm -rf injective-$(CHAIN_ID)/data
+	@rm -rf injective-$(CHAIN_ID)/wasm
+
+unpack: clean
+	tar -xf injective-$(CHAIN_ID)/*.tar.lz4 -C injective-$(CHAIN_ID)/
+
+.PHONY: devnetify apply-upgrade injectived injectived-local injectived-cli injectived-cli-local unpack clean
