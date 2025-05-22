@@ -9,11 +9,11 @@ This repo is a demo case for the devnetify process.
 1. Download the latest [testnet state snapshot](https://polkachu.com/testnets/injective/snapshots) from Polkachu
     - `data` -> `injective-888/data`
     - `wasm` -> `injective-888/wasm`
-2. Run `./injective-888/cli/devnetify-v1.15.sh`, wait for it to finish.
-3. Run `./injective-888/cli/injectived-v1.15.sh` in separate tab.
-4. Run `./injective-888/cli/apply-upgrade-v1.16.sh` (voting time is `10s` as per `custom_overrides.yaml`)
+2. Run `./injective-888/cli/devnetify-v1.15.0.sh`, wait for it to finish.
+3. Run `./injective-888/cli/injectived-v1.15.0.sh` in separate tab.
+4. Run `./injective-888/cli/apply-upgrade-v1.16.0.sh` (voting time is `10s` as per `custom_overrides.yaml`)
 5. Verify it's done and wait until block is reached, stop the node.
-6. Ensure that a local `injectived` binary has `v1.16.0` upgrade handler.
+6. Ensure that a local `injectived` binary has `v1.16.0-beta.2` upgrade handler.
 7. Run local `injectived` with `./injective-888/cli/injectived-local.sh` and validate the upgrade.
 
 ### Steps to re-build the mainnet from scratch
@@ -21,9 +21,9 @@ This repo is a demo case for the devnetify process.
 1. Download the latest [mainnet state snapshot](https://polkachu.com/tendermint_snapshots/injective) from Polkachu
     - `data` -> `injective-1/data`
     - `wasm` -> `injective-1/wasm`
-2. Run `./injective-1/cli/devnetify-v1.15.sh`, wait for it to finish.
-3. Run `./injective-1/cli/injectived-v1.15.sh` in separate tab.
-4. Run `./injective-1/cli/apply-upgrade-v1.16.sh` (voting time is `10s` as per `custom_overrides.yaml`)
+2. Run `./injective-1/cli/devnetify-v1.15.0.sh`, wait for it to finish.
+3. Run `./injective-1/cli/injectived-v1.15.0.sh` in separate tab.
+4. Run `./injective-1/cli/apply-upgrade-v1.16.0.sh` (voting time is `10s` as per `custom_overrides.yaml`)
 5. Verify it's done and wait until block is reached, stop the node.
 6. Ensure that a local `injectived` binary has `v1.16.0` upgrade handler.
 7. Run local `injectived` with `./injective-1/cli/injectived-local.sh` and validate the upgrade.

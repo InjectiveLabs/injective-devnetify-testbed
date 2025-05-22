@@ -1,0 +1,51 @@
+{
+ "messages": [
+  {
+   "@type": "/injective.evm.v1.MsgUpdateParams",
+   "authority": "inj10d07y265gmmuvt4z0w9aw880jnsr700jstypyt",
+   "params": {
+    "evm_denom": "inj",
+    "enable_create": true,
+    "enable_call": true,
+    "extra_eips": [],
+    "chain_config": {
+      "homestead_block": "0",
+      "dao_fork_block": "0",
+      "dao_fork_support": true,
+      "eip150_block": "0",
+      "eip150_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "eip155_block": "0",
+      "eip158_block": "0",
+      "byzantium_block": "0",
+      "constantinople_block": "0",
+      "petersburg_block": "0",
+      "istanbul_block": "0",
+      "muir_glacier_block": "0",
+      "berlin_block": "0",
+      "london_block": "0",
+      "arrow_glacier_block": "0",
+      "gray_glacier_block": "0",
+      "merge_netsplit_block": "0",
+      "shanghai_time": "0",
+      "cancun_time": "0",
+      "prague_time": "0",
+      "eip155_chain_id": "1439"
+    },
+    "allow_unprotected_txs": true,
+    "authorized_deployers": [
+        "0x2968698c6b9ed6d44b667a0b1f312a3b5d94ded7",
+		"0x07168ea5824c3c7ded9bf7e4d5133fdb54081808",
+		"0xf22dccace9d0610334f32637100cad2934528f81",
+		"0x2fd97ee5473087ab611ffea6a43a123388012d80",
+		"0x05f32b3cc3888453ff71b01135b34ff8e41263f2"
+    ],
+    "permissioned": true
+   }
+  }
+ ],
+ "metadata": "ipfs://CID",
+ "deposit": "500000000000000000000inj",
+ "title": "Update genesis EVM params",
+ "summary": "Updates values of EVM module params - testnet",
+ "expedited": false
+}

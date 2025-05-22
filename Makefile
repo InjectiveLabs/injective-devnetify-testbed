@@ -22,6 +22,9 @@ injectived-cli:
 injectived-cli-local:
 	./injective-$(CHAIN_ID)/cli/injectived-cli-local.sh
 
+apply-evm-proposal:
+	./injective-$(CHAIN_ID)/cli/apply-evm-proposal.sh
+
 clean:
 	@rm -rf injective-$(CHAIN_ID)/data
 	@rm -rf injective-$(CHAIN_ID)/wasm
@@ -29,4 +32,4 @@ clean:
 unpack: clean
 	tar -xf injective-$(CHAIN_ID)/*.tar.lz4 -C injective-$(CHAIN_ID)/
 
-.PHONY: devnetify apply-upgrade injectived injectived-local injectived-cli injectived-cli-local unpack clean
+.PHONY: devnetify apply-upgrade injectived injectived-local injectived-cli injectived-cli-local apply-evm-proposal unpack clean
