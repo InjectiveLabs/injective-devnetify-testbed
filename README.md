@@ -4,6 +4,20 @@ Allows to take `v1.15.0` state snapshot, devnetify to run it locally with a sing
 
 This repo is a demo case for the devnetify process.
 
+### Getting Started
+ 
+ ```
+ git clone org-44571224@github.com:InjectiveLabs/injective-devnetify-testbed.git
+ cd injective-devnetify-testbed
+ ```
+
+ This repository uses Git LFS to store the genesis file and node keys. After cloning, make sure to fetch all required LFS files using git lfs pull.
+
+ ```
+ git lfs install
+ git lfs pull
+ ``` 
+
 ### Steps to re-build the testnet from scratch
 
 1. Download the latest [testnet state snapshot](https://polkachu.com/testnets/injective/snapshots) from Polkachu
