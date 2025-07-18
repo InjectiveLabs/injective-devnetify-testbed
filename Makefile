@@ -1,7 +1,7 @@
 all:
 
 CHAIN_ID?=888
-VERSION_FROM?=v1.15.0
+VERSION_FROM?=v1.16.0
 VERSION_TO?=v1.16.0
 
 devnetify:
