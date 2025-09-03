@@ -21,11 +21,11 @@ This repo is a demo case for the devnetify process.
 1. Download the latest [mainnet state snapshot](https://polkachu.com/tendermint_snapshots/injective) from Polkachu
     - `data` -> `injective-1/data`
     - `wasm` -> `injective-1/wasm`
-2. Run `./injective-1/cli/devnetify-v1.15.0.sh`, wait for it to finish.
-3. Run `./injective-1/cli/injectived-v1.15.0.sh` in separate tab.
-4. Run `./injective-1/cli/apply-upgrade-v1.16.0.sh` (voting time is `10s` as per `custom_overrides.yaml`)
+2. Run `./injective-1/cli/devnetify-v1.16.2.sh`, wait for it to finish.
+3. Run `./injective-1/cli/injectived-v1.16.2.sh` in separate tab.
+4. Run `./injective-1/cli/apply-upgrade-v1.16.3.sh` (voting time is `10s` as per `custom_overrides.yaml`)
 5. Verify it's done and wait until block is reached, stop the node.
-6. Ensure that a local `injectived` binary has `v1.16.0` upgrade handler.
+6. Ensure that a local `injectived` binary has `v1.16.3` upgrade handler.
 7. Run local `injectived` with `./injective-1/cli/injectived-local.sh` and validate the upgrade.
 
 ### Useful endpoints
