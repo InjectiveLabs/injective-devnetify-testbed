@@ -5,3 +5,5 @@ AccountsToFund:
 GovParams:
   votingperiod: 10s
   maxdepositperiod: 10s
+  quorum: 0
+  threshold: 0
