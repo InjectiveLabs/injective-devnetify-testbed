@@ -1,78 +1,25 @@
-# Testnet/Mainnet Devnetify Testbed
+# Devnetify Testbed Scripts
 
-Allows to take `v1.15.0` state snapshot, devnetify to run it locally with a single validator, and upgrade it with new binary and `v1.16.0` upgrade handler. This allows to test upgrade handler locally for both testnet and mainnet live state.
+## This repo is a demo case for the devnetify process
 
-This repo is a demo case for the devnetify process.
+The flow changed since last version of testbed scripts:
 
-## Steps to re-build the testnet from scratch
+* New default flow is to deventify network into multi-validator (4) setup, no governance vote for upgrade is required, as it happens in-place during devnetify.
+* The flow is located inside [multival-novote](multival-novote/) dir.
 
-1. Download the latest [testnet state snapshot](https://polkachu.com/testnets/injective/snapshots) from Polkachu
-    - `data` -> `injective-888/data`
-    - `wasm` -> `injective-888/wasm`
-2. Run `./injective-888/cli/devnetify-v1.15.0.sh`, wait for it to finish.
-3. Run `./injective-888/cli/injectived-v1.15.0.sh` in separate tab.
-4. Run `./injective-888/cli/apply-upgrade-v1.16.0.sh` (voting time is `10s` as per `custom_overrides.yaml`)
-5. Verify it's done and wait until block is reached, stop the node.
-6. Ensure that a local `injectived` binary has `v1.16.0-beta.2` upgrade handler.
-7. Run local `injectived` with `./injective-888/cli/injectived-local.sh` and validate the upgrade.
+Alternative flow, to avoid using docker and run node natively:
 
-## Steps to re-build the mainnet from scratch
+* [singleval-novote](singleval-novote/)
+* It bootstraps and devnitifies the network with a single validator. It is not suitable for any serious testing (app-hash won't be caught, etc).
 
-1. Download the latest [mainnet state snapshot](https://polkachu.com/tendermint_snapshots/injective) from Polkachu
-    - `data` -> `injective-1/data`
-    - `wasm` -> `injective-1/wasm`
-2. Run `./injective-1/cli/devnetify-v1.16.2.sh`, wait for it to finish.
-3. Run `./injective-1/cli/injectived-v1.16.2.sh` in separate tab.
-4. Run `./injective-1/cli/apply-upgrade-v1.16.3.sh` (voting time is `10s` as per `custom_overrides.yaml`)
-5. Verify it's done and wait until block is reached, stop the node.
-6. Ensure that a local `injectived` binary has `v1.16.3` upgrade handler.
-7. Run local `injectived` with `./injective-1/cli/injectived-local.sh` and validate the upgrade.
+Previous (Legacy) flow was to devnetify with a single validator and run the upgrade proposal through a governance vote, replacing the binaries after proposal passes. That was not an efficient flow, but handled things in a way that resembeles usual chain operations.
 
-### Useful endpoints
+Archive of the legacy flow can be found there: [singleval-vote](singleval-vote/)
 
-Use this to debug any step of devnetify process.
+## How to run
 
-Last proposal
+All approaches to devnetify an existing network state are based `injectived devnetify` subcommand, implemented since `v1.16.x` and going forward.
 
-```http
-http://localhost:10337/cosmos/gov/v1beta1/proposals?pagination.limit=1&pagination.reverse=true
-```
-
-Voting params
-
-```http
-http://localhost:10337/cosmos/gov/v1/params/voting
-```
-
-Validators set
-
-```http
-http://localhost:10337/cosmos/staking/v1beta1/validators
-```
-
-### Makefile
-
-There is a handy Makefile to automate the process.
-
-Default environment values:
-
-```bash
-CHAIN_ID=888 # set the chain id
-VERSION_FROM=v1.15.0 # set the version from
-VERSION_TO=v1.16.0 # set the version to
-```
-
-Targets:
-
-```bash
-make devnetify # devnetify the state
-make apply-upgrade # apply upgrade
-make injectived # run injectived node with docker image
-make injectived-local # run injectived node with local binary
-make injectived-cli # run injectived client with docker image
-make injectived-cli-local # run injectived client with local binary
-make clean # clean up the data and wasm directories
-make unpack # unpack the snapshot from the tar.lz4 file
-```
-
-There is also a `unpack` target to unpack the snapshot from any `*.tar.lz4` file. Just download the snapshot from Polkachu to the target chain dir and run `make unpack`. Use `CHAIN_ID` to set the valid chain dir prefix, e.g. `CHAIN_ID=1 make unpack`.
+* [multival-novote](multival-novote/) - new flow
+* [singleval-novote](singleval-novote/) - new flow, single validator
+* [singleval-vote](singleval-vote/) - legacy

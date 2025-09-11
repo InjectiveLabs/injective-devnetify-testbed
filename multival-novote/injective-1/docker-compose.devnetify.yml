@@ -1,0 +1,93 @@
+services:
+  injectived0:
+    container_name: devnetify-validator-0
+    image: "${DOCKER_IMAGE}"
+    environment:
+      - DEBUG=0
+      - NODE_HOME=/root/injective-1/validators/0
+      - CHAIN_ID=injective-1
+      - MONIKER=validator-0
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "26656-26657:26656-26657"
+      - "10337:10337"
+      - "9900:9900"
+      - "9091:9091"
+      - "6060:2345"
+      - "8545-8546:8545-8546"
+      - "26660:26660"
+    volumes:
+      - .:/root/injective-1:Z
+    networks:
+      localnet:
+        ipv4_address: 172.127.0.2
+    restart: no
+    command: injectived --home=/root/injective-1/validators/0 devnetify -y -O /root/injective-1/custom_overrides.yaml -V /root/injective-1/validators -K /root/injective-1/instances/0/accounts.json -u ${UPGRADE_HANDLER_VERSION} injective-1
+  injectived1:
+    container_name: devnetify-validator-1
+    image: "${DOCKER_IMAGE}"
+    environment:
+      - DEBUG=0
+      - NODE_HOME=/root/injective-1/validators/1
+      - CHAIN_ID=injective-1
+      - MONIKER=validator-1
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - .:/root/injective-1:Z
+    networks:
+      localnet:
+        ipv4_address: 172.127.0.3
+    restart: no
+    command: injectived --home=/root/injective-1/validators/1 devnetify -y -O /root/injective-1/custom_overrides.yaml -V /root/injective-1/validators -K /root/injective-1/instances/0/accounts.json -u ${UPGRADE_HANDLER_VERSION} injective-1
+  injectived2:
+    container_name: devnetify-validator-2
+    image: "${DOCKER_IMAGE}"
+    environment:
+      - DEBUG=0
+      - NODE_HOME=/root/injective-1/validators/2
+      - CHAIN_ID=injective-1
+      - MONIKER=validator-2
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - .:/root/injective-1:Z
+    networks:
+      localnet:
+        ipv4_address: 172.127.0.4
+    restart: no
+    command: injectived --home=/root/injective-1/validators/2 devnetify -y -O /root/injective-1/custom_overrides.yaml -V /root/injective-1/validators -K /root/injective-1/instances/0/accounts.json -u ${UPGRADE_HANDLER_VERSION} injective-1
+  injectived3:
+    container_name: devnetify-validator-3
+    image: "${DOCKER_IMAGE}"
+    environment:
+      - DEBUG=0
+      - NODE_HOME=/root/injective-1/validators/3
+      - CHAIN_ID=injective-1
+      - MONIKER=validator-3
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - .:/root/injective-1:Z
+    networks:
+      localnet:
+        ipv4_address: 172.127.0.5
+    restart: no
+    command: injectived --home=/root/injective-1/validators/3 devnetify -y -O /root/injective-1/custom_overrides.yaml -V /root/injective-1/validators -K /root/injective-1/instances/0/accounts.json -u ${UPGRADE_HANDLER_VERSION} injective-1
+
+networks:
+  localnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.127.0.0/24
