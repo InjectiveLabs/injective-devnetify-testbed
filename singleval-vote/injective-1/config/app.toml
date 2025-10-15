@@ -106,8 +106,7 @@ prometheus-retention-time = 0
 #
 # Example:
 # [["chain_id", "cosmoshub-1"]]
-global-labels = [
-]
+global-labels = []
 
 # MetricsSink defines the type of metrics sink to use.
 metrics-sink = ""
@@ -210,10 +209,10 @@ address = "127.0.0.1:8545"
 # Address defines the EVM WebSocket server address to bind to.
 ws-address = "127.0.0.1:8546"
 
+api = "eth,web3,net,debug,personal,txpool,inj"
+
 # API defines a list of JSON-RPC namespaces that should be enabled
 # Example: "eth,txpool,personal,net,debug,web3"
-api = "eth,net,web3"
-
 # GasCap sets a cap on gas that can be used in eth_call/estimateGas (0=infinite).
 gas-cap = 25000000
 

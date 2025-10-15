@@ -106,8 +106,7 @@ prometheus-retention-time = 0
 #
 # Example:
 # [["chain_id", "cosmoshub-1"]]
-global-labels = [
-]
+global-labels = []
 
 # MetricsSink defines the type of metrics sink to use.
 metrics-sink = ""
@@ -212,7 +211,7 @@ ws-address = "0.0.0.0:8546"
 
 # API defines a list of JSON-RPC namespaces that should be enabled
 # Example: "eth,txpool,personal,net,debug,web3"
-api = "eth,net,web3"
+api = "eth,web3,net,debug,personal,txpool,inj"
 
 # GasCap sets a cap on gas that can be used in eth_call/estimateGas (0=infinite).
 gas-cap = 25000000
@@ -253,7 +252,7 @@ max-open-connections = 0
 enable-indexer = true
 
 # AllowIndexerGap allow block gap for the custom transaction indexer for the EVM (ethereum transactions).
-allow-indexer-gap = true
+allow-indexer-gap = false
 
 # Define if JSON-RPC metrics server should be enabled.
 metrics = false
