@@ -209,7 +209,7 @@ address = "0.0.0.0:8545"
 # Address defines the EVM WebSocket server address to bind to.
 ws-address = "0.0.0.0:8546"
 
-api = "eth,web3,net,debug,personal,txpool,inj"
+api = "eth,web3,net,debug,txpool,inj"
 
 # API defines a list of JSON-RPC namespaces that should be enabled
 # Example: "eth,txpool,personal,net,debug,web3"
