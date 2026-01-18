@@ -11,6 +11,13 @@ NOTE:
 Docker images always have a version tag, you can build image locally and make a special version tag.
 Meanwhile, locally avaialable binaries (injectived), are not tagged, it uses whatever binary is available.
 
+```bash
+# after cloning repo don't forget to initialize LFS
+
+git lfs install
+git lfs pull
+```
+
 STEPS:
 
 0. *(optionally)* Re-generate target validators dirs and keys using `make gen-4` if target version changes. Uses [chain-stresser](https://github.com/InjectiveLabs/chain-stresser) binary.
